@@ -110,7 +110,28 @@ public class SistemaDeBataia : MonoBehaviour
         {
             yield return DialogueBox.TypeDialogue($"{PlayerUnit.Pokemongol.Base.name} morreu :( ");
             PlayerUnit.PlayDyingAnimation();
-            BataiaAcabou(true);
+
+            yield return new WaitForSeconds(1f);
+
+            var NextPokemongol= PlayerParty.GetNextPokemon();
+            if (NextPokemongol != null)
+            {
+                PlayerUnit.Setup(NextPokemongol);
+                PlayerHUD.SetData(NextPokemongol);
+
+                DialogueBox.SetMoveNames(NextPokemongol.MoveList);
+                yield return DialogueBox.TypeDialogue($"VAI {NextPokemongol.Base.name} CARALHO, SE N EU TO FUDIDO");
+                yield return new WaitForSeconds(0.4f);
+                yield return DialogueBox.TypeDialogue("ESCOLHA SUA AÇÃO DE CRIA");
+                yield return new WaitForSeconds(0.5f);
+                PlayerAction();
+
+
+            }
+            else
+            {
+                BataiaAcabou(true);
+            }
         }
         else
         {
