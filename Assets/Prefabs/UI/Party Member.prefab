@@ -314,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5048183938621399020}
   - component: {fileID: 3441525733291616514}
-  - component: {fileID: 1300677552682787269}
+  - component: {fileID: -7430237756345881384}
   m_Layer: 0
   m_Name: Party Member
   m_TagString: Untagged
@@ -352,7 +352,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6177135229075717189}
   m_CullTransparentMesh: 1
---- !u!114 &1300677552682787269
+--- !u!114 &-7430237756345881384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,14 +361,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6177135229075717189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a501c88dbc81dc6488f822d40a15043b, type: 3}
+  m_Script: {fileID: 11500000, guid: d260ea25208c03b46bcfdf8d2ae5b71a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 5504735176191830394}
-  LevelText: {fileID: 5631751333154918943}
-  HpBar: {fileID: 728858554941734498}
-  HpText: {fileID: 4153691811412817340}
-  HpAntes: 0
+  Nametxt: {fileID: 0}
+  Leveltxt: {fileID: 0}
+  HPbar: {fileID: 0}
+  CorNormal: {r: 1, g: 1, b: 1, a: 1}
+  CorSelecionada: {r: 0.3137255, g: 0.8, b: 0, a: 1}
 --- !u!1 &7713713293326577139
 GameObject:
   m_ObjectHideFlags: 0

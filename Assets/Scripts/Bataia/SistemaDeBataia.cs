@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum BattleState {Start, PlayerAction, PlayerMove, EnemyMove, Waiting }
+public enum BattleState {Start, PlayerAction, PlayerMove, EnemyMove, Waiting, PartyScreen }
 public class SistemaDeBataia : MonoBehaviour
 {
     [SerializeField] UnitDeBataia PlayerUnit;
@@ -11,6 +11,7 @@ public class SistemaDeBataia : MonoBehaviour
     [SerializeField] HUDdaBataia PlayerHUD;
     [SerializeField] HUDdaBataia EnemyHUD;
     [SerializeField] CaixaDeDialogoDaBataia DialogueBox;
+    [SerializeField] PartyScreen partyScreen;
 
     public event Action<bool> BataiaAcabou;
 
@@ -53,6 +54,11 @@ public class SistemaDeBataia : MonoBehaviour
         DialogueBox.EnableMoveSelector(true);
         DialogueBox.EnableDialogueText(false);
         DialogueBox.EnableActionSelector(false);
+    }
+    void OpenPartyScreen()
+    {
+        Estado = BattleState.PartyScreen;
+        partyScreen.gameObject.SetActive(true);
     }
     public void HandleUpdate()
     {
@@ -161,9 +167,9 @@ public class SistemaDeBataia : MonoBehaviour
     }
     void HandleActionSelection()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
-            if(CurrenctAction < 3)
+            if (CurrenctAction < 3)
             {
                 ++CurrenctAction;
             }
@@ -173,7 +179,7 @@ public class SistemaDeBataia : MonoBehaviour
             }
         }
 
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             if(CurrenctAction > 0)
             {
@@ -185,7 +191,7 @@ public class SistemaDeBataia : MonoBehaviour
             }
         }
         
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             if (CurrenctAction < 2)
             {
@@ -196,7 +202,7 @@ public class SistemaDeBataia : MonoBehaviour
                 CurrenctAction -= 2;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             if (CurrenctAction > 1)
             {
@@ -213,6 +219,10 @@ public class SistemaDeBataia : MonoBehaviour
             if(CurrenctAction == 2)
             {
                 PlayerMove();
+            }
+            if(CurrenctAction == 1)
+            {
+                OpenPartyScreen();
             }
         }
     }
