@@ -17,7 +17,8 @@ public class SistemaDeBataia : MonoBehaviour
 
     BattleState Estado;
     int CurrenctAction;
-    [SerializeField] int CurrentMove;
+    int CurrentMove;
+    int CurrentPokemon;
 
     PokemongolParty PlayerParty;
     Pokemongol WildPokemon;
@@ -58,6 +59,7 @@ public class SistemaDeBataia : MonoBehaviour
     void OpenPartyScreen()
     {
         Estado = BattleState.PartyScreen;
+        partyScreen.SetPartyData(PlayerParty.Pokemongols);
         partyScreen.gameObject.SetActive(true);
     }
     public void HandleUpdate()
@@ -69,6 +71,10 @@ public class SistemaDeBataia : MonoBehaviour
         if (Estado == BattleState.PlayerMove)
         {
             HandleMoveSelection();
+        }
+        if(Estado == BattleState.PartyScreen)
+        {
+            //HandelPartySelection();
         }
     }
     IEnumerator PerformPlayerMove()
