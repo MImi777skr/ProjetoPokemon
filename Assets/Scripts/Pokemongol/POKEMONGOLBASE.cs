@@ -26,7 +26,7 @@ public class POKEMONGOLBASE : ScriptableObject
     #region Get Variaveis
     public string Nome
     {
-        get { return name; }
+        get { return nome; }
     }
 
     public int maxHP

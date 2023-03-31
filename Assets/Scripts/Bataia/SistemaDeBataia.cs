@@ -18,7 +18,7 @@ public class SistemaDeBataia : MonoBehaviour
     BattleState Estado;
     int CurrenctAction;
     int CurrentMove;
-    int CurrentPokemon;
+    [SerializeField] int CurrentPokemon;
 
     PokemongolParty PlayerParty;
     Pokemongol WildPokemon;
@@ -36,6 +36,7 @@ public class SistemaDeBataia : MonoBehaviour
         PlayerHUD.SetData(PlayerUnit.Pokemongol);
         EnemyHUD.SetData(EnemyUnit.Pokemongol);
         DialogueBox.SetMoveNames(PlayerUnit.Pokemongol.MoveList);
+        partyScreen.Init();
 
         yield return DialogueBox.TypeDialogue($"A wild {EnemyUnit.Pokemongol.Base.name} has appeared!");
         yield return new WaitForSeconds(1f);
@@ -74,7 +75,7 @@ public class SistemaDeBataia : MonoBehaviour
         }
         if(Estado == BattleState.PartyScreen)
         {
-            //HandelPartySelection();
+            HandlePartySelection();
         }
     }
     IEnumerator PerformPlayerMove()
@@ -287,6 +288,77 @@ public class SistemaDeBataia : MonoBehaviour
             DialogueBox.EnableMoveSelector(false);
             DialogueBox.EnableDialogueText(true);
             StartCoroutine(PerformPlayerMove());
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            DialogueBox.EnableMoveSelector(false);
+            DialogueBox.EnableDialogueText(false);
+            PlayerAction();
+        }
+    }
+    void HandlePartySelection()
+    {
+        if(Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            if (CurrentPokemon < PlayerParty.Pokemongols.Count - 1)
+            {
+                CurrentPokemon++;
+            }
+            else
+            {
+                CurrentPokemon--;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            if (CurrentPokemon > 0)
+            {
+                CurrentPokemon --;
+            }
+            else
+            {
+                CurrentPokemon++;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            if (CurrentPokemon < PlayerParty.Pokemongols.Count - 2)
+            {
+                CurrentPokemon += 2;
+            }
+            else if(CurrentPokemon == PlayerParty.Pokemongols.Count - 2)
+            {
+                CurrentPokemon = 0;
+            }
+            else if (CurrentPokemon == PlayerParty.Pokemongols.Count - 1)
+            {
+                CurrentPokemon = 1;
+            }
+
+        }
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            if (CurrentPokemon >  1)
+            {
+                CurrentPokemon -= 2;
+            }
+            else if(CurrentPokemon == 0)
+            {
+                CurrentPokemon = PlayerParty.Pokemongols.Count - 2;
+            }
+            else if(CurrentPokemon == 1)
+            {
+                CurrentPokemon = PlayerParty.Pokemongols.Count - 1;
+            }
+        }
+
+        //CurrentPokemon = Mathf.Clamp(CurrentPokemon, 0, PlayerParty.Pokemongols.Count - 1);
+        partyScreen.UpdateSelecaoDePokemon(CurrentPokemon);
+        //Voltar
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            partyScreen.gameObject.SetActive(false);
+            PlayerAction();
         }
     }
 }

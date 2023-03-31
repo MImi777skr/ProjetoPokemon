@@ -13,13 +13,13 @@ public class UIdaParty : MonoBehaviour
 
     Pokemongol pokemon;
 
-    public void SetData(Pokemongol pokemongol)
+    public void SetData(Pokemongol _pokemongol)
     {
-        pokemon = pokemongol;
+        pokemon = _pokemongol;
 
-        Nametxt.text = pokemongol.Base.name;
-        Leveltxt.text = $"Lvl {pokemongol.Level}";
-        HPbar.SetHp((float)pokemongol.HP / (float)pokemongol.MaxHP);
+        Nametxt.text = _pokemongol.Base.Nome;
+        Leveltxt.text = $"Lvl {_pokemongol.Level}";
+        HPbar.SetHp((float)_pokemongol.HP / (float)_pokemongol.MaxHP);
     }
 
     public void SetSelected(bool Selecionado)
