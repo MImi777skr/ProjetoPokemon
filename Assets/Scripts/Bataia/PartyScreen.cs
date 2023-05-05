@@ -27,7 +27,7 @@ public class PartyScreen : MonoBehaviour
                 PokemonSlots[a].gameObject.SetActive(false);
             }
         }
-        TextoDaMsg.text = "ESCOLHA SEU POKECRIA";
+       
     }
     public void UpdateSelecaoDePokemon(int PokemonSelecionado)
     {
@@ -42,5 +42,9 @@ public class PartyScreen : MonoBehaviour
                 PokemonSlots[a].SetSelected(false);
             }
         }
+    }
+    public void SetMensagem(string mensagem)
+    {
+        TextoDaMsg.text = mensagem;
     }
 }

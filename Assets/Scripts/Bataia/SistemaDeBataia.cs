@@ -19,6 +19,7 @@ public class SistemaDeBataia : MonoBehaviour
     int CurrenctAction;
     int CurrentMove;
     [SerializeField] int CurrentPokemon;
+    int ContagemdeFuga;
 
     PokemongolParty PlayerParty;
     Pokemongol WildPokemon;
@@ -231,7 +232,12 @@ public class SistemaDeBataia : MonoBehaviour
             {
                 OpenPartyScreen();
             }
+            if(CurrenctAction == 3)
+            {
+                StartCoroutine(TentativadeFuga());
+            }
         }
+   
     }
     void HandleMoveSelection()
     {
@@ -354,11 +360,60 @@ public class SistemaDeBataia : MonoBehaviour
 
         //CurrentPokemon = Mathf.Clamp(CurrentPokemon, 0, PlayerParty.Pokemongols.Count - 1);
         partyScreen.UpdateSelecaoDePokemon(CurrentPokemon);
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        { 
+            var MembroSelec = PlayerParty.Pokemongols[CurrentPokemon];
+            if(MembroSelec.HP <= 0)
+            {
+                partyScreen.SetMensagem($"{MembroSelec.Base.name} está em nanas. Escolha outro cria");
+                return;
+            }
+            if(MembroSelec == PlayerUnit.Pokemongol)
+            {
+                partyScreen.SetMensagem($"{MembroSelec.Base.name} ja tá na batalha. Dias de Luta dias de Glória.");
+                return;
+            }
+            partyScreen.gameObject.SetActive(false);
+            Estado = BattleState.Waiting;
+            StartCoroutine(SwitchPokemon(MembroSelec));
+        }
         //Voltar
-        if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
             partyScreen.gameObject.SetActive(false);
             PlayerAction();
+        }
+    }
+
+    IEnumerator SwitchPokemon(Pokemongol Newpokecria)
+    {
+        DialogueBox.TypeDialogue($"PQP VOLTA {PlayerUnit.Pokemongol.Base.name}");
+        PlayerUnit.PlayDyingAnimation();
+
+        yield return new WaitForSeconds(1f);
+        PlayerUnit.Setup(Newpokecria);
+        PlayerHUD.SetData(Newpokecria);
+        DialogueBox.SetMoveNames(Newpokecria.MoveList);
+
+        yield return DialogueBox.TypeDialogue($"VAI {Newpokecria.Base.name} PORRA");
+
+        yield return new WaitForSeconds(1f);
+            
+        StartCoroutine(EnemyMove());
+    }
+    IEnumerator TentativadeFuga()
+    {
+        Estado = BattleState.Waiting;
+        DialogueBox.EnableDialogueText(true);
+        ContagemdeFuga ++;
+
+        int PlayerSpeed = PlayerUnit.Pokemongol.Speed;
+        int EnemySpeed = EnemyUnit.Pokemongol.Speed;
+        if(EnemySpeed < PlayerSpeed)
+        {
+            yield return DialogueBox.TypeDialogue("CORRE NEGADAAAA");
+            BataiaAcabou(true);
         }
     }
 }
