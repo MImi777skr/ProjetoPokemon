@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] bool MoveInterroga;
     [SerializeField] float[] TempoDoEncontro = new float[2];
     [SerializeField] float Timer;
+    public LayerMask LayerInteragiveis;
+
     public event Action OnEcountered;
 
     #endregion
@@ -37,6 +39,12 @@ public class Player : MonoBehaviour
         //Debug.Log(Input.GetAxisRaw("Horizontal"));
         ccPlayer.Move(move * Time.deltaTime);
     }
+    void Interact()
+    {
+        var FaceDirection = new Vector3(anime.GetFloat("Horizontal"),0,anime.GetFloat("Vertical"));
+        var InteractionPos = transform.position + FaceDirection;
+        Debug.DrawLine(transform.position, InteractionPos, Color.red, 3f);
+    }
 
     #region Anime
     void Anime()
@@ -55,6 +63,10 @@ public class Player : MonoBehaviour
         {
             anime.SetBool("MovendoINTERROGA", true);
             MoveInterroga = true;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
         }
     }
     #endregion
