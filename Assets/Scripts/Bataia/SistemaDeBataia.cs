@@ -415,5 +415,25 @@ public class SistemaDeBataia : MonoBehaviour
             yield return DialogueBox.TypeDialogue("CORRE NEGADAAAA");
             BataiaAcabou(true);
         }
+        else
+        {
+            float a = ((PlayerSpeed * 128 / EnemySpeed) + 30 * ContagemdeFuga);
+            Debug.Log(a);
+            float OddEscape = a % 256;
+            Debug.Log($"MOD {a}");
+
+            if(UnityEngine.Random.Range(0,255) < OddEscape)
+            {
+                yield return DialogueBox.TypeDialogue("CORRE NEGADAAAA");
+                BataiaAcabou(true);
+            }
+            else
+            {
+                yield return DialogueBox.TypeDialogue("nt...");
+                new WaitForSeconds(0.5f);
+                StartCoroutine(EnemyMove());
+            }
+        }
+        
     }
 }
