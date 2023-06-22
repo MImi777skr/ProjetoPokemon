@@ -41,9 +41,19 @@ public class Player : MonoBehaviour
     }
     void Interact()
     {
-        var FaceDirection = new Vector3(anime.GetFloat("Horizontal"),0,anime.GetFloat("Vertical"));
+        var FaceDirection = new Vector3(anime.GetFloat("Horizontal")*-1f,0,anime.GetFloat("Vertical")*-1f);
         var InteractionPos = transform.position + FaceDirection;
         Debug.DrawLine(transform.position, InteractionPos, Color.red, 3f);
+
+        var Colliders = Physics.OverlapSphere(InteractionPos, 0.1f, LayerInteragiveis);
+
+        if(Colliders != null)
+        { 
+            foreach(var collider in Colliders)
+            {
+                collider.GetComponent<Interagiveis>()?.Interact();
+            }
+        }
     }
 
     #region Anime

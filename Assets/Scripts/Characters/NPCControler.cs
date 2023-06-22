@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCControler : MonoBehaviour
+public class NPCControler : MonoBehaviour, Interagiveis
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Dialogo dialogo;
+    public void Interact()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("INTERAGINDO...");
     }
 }

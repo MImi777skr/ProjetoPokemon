@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable]
+[System.Serializable] //Basicamente Faz com que se possa copiar os atributos do script quando herdado, não só os métodos
 public class Dialogo
 {
     [SerializeField] int _COMODIMINUIAFONTE;

@@ -135,7 +135,8 @@ GameObject:
   - component: {fileID: 9568267}
   - component: {fileID: 9568270}
   - component: {fileID: 9568269}
-  m_Layer: 0
+  - component: {fileID: 9568271}
+  m_Layer: 8
   m_Name: PokemonTrainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,6 +237,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9568271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9568266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06011f1617dacea4597e1ec513bb51e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogo:
+    _COMODIMINUIAFONTE: 0
+    _ImagemNpc: {fileID: 0}
+    _Name: 
+    _SentenceText: []
 --- !u!1 &18787455
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,12 +316,10 @@ MonoBehaviour:
   WaitTime: 5
   anime: {fileID: 870074060}
   dialogo:
-    COMODIMINUIAFONTE: 0
-    ImagemNpc: {fileID: 21300000, guid: b2d951655509c5744ba3d937f6806c0a, type: 3}
-    Name: Jeremias
-    SentenceText:
-    - OH MEU DEUS!!!
-    - ABENCOAI TUA VIDA
+    _COMODIMINUIAFONTE: 0
+    _ImagemNpc: {fileID: 0}
+    _Name: 
+    _SentenceText: []
 --- !u!136 &18787458
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1666,14 +1682,10 @@ MonoBehaviour:
   WaitTime: 5
   anime: {fileID: 870074060}
   dialogo:
-    COMODIMINUIAFONTE: 0
-    ImagemNpc: {fileID: 0}
-    Name: "Jer\xEA"
-    SentenceText:
-    - OH MEU DEUS!!!
-    - 'Relaxa bro pd ler seu harry potter
-
-'
+    _COMODIMINUIAFONTE: 0
+    _ImagemNpc: {fileID: 0}
+    _Name: 
+    _SentenceText: []
 --- !u!136 &423587598
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3541,7 +3553,7 @@ MonoBehaviour:
   Timer: 0
   LayerInteragiveis:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!212 &928356051
 SpriteRenderer:
   m_ObjectHideFlags: 0
