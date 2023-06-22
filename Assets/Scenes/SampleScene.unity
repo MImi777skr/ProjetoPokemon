@@ -3641,7 +3641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pokemongols:
   - _base: {fileID: 11400000, guid: 180382f262fa66343a5317ec97b59ab5, type: 2}
-    level: 100
+    level: 1
   - _base: {fileID: 11400000, guid: 20821716bc24f064cbc84d41a45944a1, type: 2}
     level: 23
   - _base: {fileID: 11400000, guid: 20821716bc24f064cbc84d41a45944a1, type: 2}
@@ -4016,13 +4016,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WildPokemons:
   - _base: {fileID: 11400000, guid: 20821716bc24f064cbc84d41a45944a1, type: 2}
-    level: 1
+    level: 50
   - _base: {fileID: 11400000, guid: 87b1a0ead58bbb64d93bd5723b535d77, type: 2}
-    level: 1
+    level: 50
   - _base: {fileID: 11400000, guid: 20821716bc24f064cbc84d41a45944a1, type: 2}
-    level: 1
+    level: 50
   - _base: {fileID: 11400000, guid: 87b1a0ead58bbb64d93bd5723b535d77, type: 2}
-    level: 1
+    level: 50
 --- !u!1 &1009579629
 GameObject:
   m_ObjectHideFlags: 0
